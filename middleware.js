@@ -7,8 +7,11 @@ function authMiddleware(req, res, next) {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
+        console.log(req.headers);
         return res.status(401).json({
             message: "Token missing"
+
+
         });
     }
 
@@ -18,7 +21,7 @@ function authMiddleware(req, res, next) {
     try {
         const decoded = jwt.verify(
             token,
-            "demonsgroup12345password"
+            "secret123123"
         );
 
         console.log("Decoded:", decoded);
@@ -31,6 +34,7 @@ function authMiddleware(req, res, next) {
 
         return res.status(403).json({
             message: "Invalid token"
+
         });
     }
 }
